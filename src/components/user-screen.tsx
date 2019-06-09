@@ -18,13 +18,17 @@ const data = [
 
 const UserScreen: FunctionComponent<UserProps> = ({userName, signOut, photoURL, width, height}) => {
 
+  const _keyExtractor = (item?: any) => item.name
+
   return (
     <View style={[styles.container, {width, height}]}>
       <View style={[styles.navbar, {height: height * 0.1}]}>
         <Image style={{width: height * 0.1, height: height * 0.1}} source={{uri: photoURL}} />  
       </View>
-      <View style={{flex: 1}}>
-        <FlatList 
+      <View style={{flex: 1}} />
+      <View style={{flex: 2}}>
+        <FlatList
+          keyExtractor={_keyExtractor}
           data={data}
           renderItem={({item}) => <Button title={`${item.name}`} onPress={() => window.console.log(item.name)} />}
         />

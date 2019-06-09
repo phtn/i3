@@ -20,6 +20,7 @@ type UserProps = {
   signOut: any;
 };
 
+// eslint-disable-next-line
 function log(arg: any) {
   window.console.log(arg);
 }
