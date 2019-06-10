@@ -1,24 +1,14 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  FunctionComponent
-} from "react";
 import { useObserver } from "mobx-react-lite";
-import { View, Button, StyleSheet } from "react-native";
-import { AppStore } from "./observables/data";
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState
+} from "react";
+import { View } from "react-native";
 import UserScreen from "./components/user-screen";
-
-// types
-type SignInProps = {
-  signIn: any;
-  width: number;
-  height: number;
-};
-type UserProps = {
-  user: string;
-  signOut: any;
-};
+import SignInScreen from "./components/sign-in-screen";
+import { AppStore } from "./observables/data";
 
 // eslint-disable-next-line
 function log(arg: any) {
@@ -46,14 +36,10 @@ const HomeScreen: FunctionComponent = () => {
   }, []);
 
   // LOAD DATA
-
   const appCtx = useContext(AppStore);
 
+  // CHECK IF LOGGED IN
   appCtx.checkAuthState();
-
-  // log(appCtx.photoURL)
-
-  //
 
   return useObserver(() => (
     <View style={[{ flex: 1 }]}>
@@ -77,40 +63,5 @@ const HomeScreen: FunctionComponent = () => {
     </View>
   ));
 };
-
-const SignInScreen: FunctionComponent<SignInProps> = ({
-  signIn,
-  width,
-  height
-}) => {
-  return useObserver(() => (
-    <View style={[styles.signInScreenStyle, { width, height }]}>
-      <Button
-        // color="#40424f"
-        color="#4d505f"
-        title="Continue with Github"
-        onPress={() => signIn()}
-        accessibilityLabel="Sign in to your Github account to continue."
-      />
-    </View>
-  ));
-};
-
-// const UserScreen: FunctionComponent<UserProps> = ({ user, signOut }) => {
-//   return (
-//     <View>
-//       <Button title={`sign out as ${user}`} onPress={() => signOut()} />
-//     </View>
-//   );
-// };
-
-const styles = StyleSheet.create({
-  signInScreenStyle: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "papayawhip"
-  }
-});
 
 export default HomeScreen;
