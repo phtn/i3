@@ -45,11 +45,13 @@ const HomeScreen: FunctionComponent = () => {
     <View style={[{ flex: 1 }]}>
       {appCtx.user !== "" ? (
         <UserScreen
-          userName={appCtx.user}
-          signOut={appCtx.signOut}
-          photoURL={appCtx.photoURL}
-          width={width}
           height={height}
+          photoURL={appCtx.photoURL}
+          signOut={appCtx.signOut}
+          userName={appCtx.user}
+          version={appCtx.version}
+          width={width}
+
         />
       ) : (
         <View style={{ flex: 3 }}>

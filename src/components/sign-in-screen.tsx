@@ -12,14 +12,13 @@ type SignInButtonProps = {
 };
 
 const Loading = () => {
-  return <ActivityIndicator size="small" color="#4d505f" />;
+  return <ActivityIndicator size="small" color="#52e3c2" />;
 };
 
 const SignInButton: FunctionComponent<SignInButtonProps> = ({ signIn }) => {
   return (
     <Button
-      // color="#40424f"
-      color="#4d505f"
+      color="#52e3c2"
       title="Continue with Github"
       onPress={() => signIn()}
       accessibilityLabel="Sign in to your Github account to continue."
@@ -32,7 +31,7 @@ const SignInScreen: FunctionComponent<SignInProps> = ({
   width,
   height
 }) => {
-  
+
   const initialState = <Loading />;
   const reducer = (state: any, action: string) => {
     switch (action) {
@@ -46,7 +45,6 @@ const SignInScreen: FunctionComponent<SignInProps> = ({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // eslint-disable-next-line
       setComp("signIn");
     }, 1000);
     return () => clearTimeout(timer);
@@ -62,7 +60,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "papayawhip"
+    backgroundColor: "#4d505f",
   }
 });
 

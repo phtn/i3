@@ -1,12 +1,15 @@
 import React, { FunctionComponent } from "react";
 import { View, Button, Image, StyleSheet, FlatList } from "react-native";
+import Toolbar from './toolbar'
+import VideoScreen from './video-screen'
 
 type UserProps = {
-  userName: string;
-  signOut: any;
+  userName?: string;
+  signOut?: any;
   photoURL: string;
   width: number;
   height: number;
+  version?: string
 };
 
 const data = [
@@ -21,7 +24,8 @@ const UserScreen: FunctionComponent<UserProps> = ({
   signOut,
   photoURL,
   width,
-  height
+  height,
+  version
 }) => {
   const _keyExtractor = (item?: any) => item.name;
 
@@ -33,7 +37,7 @@ const UserScreen: FunctionComponent<UserProps> = ({
           source={{ uri: photoURL }}
         />
       </View>
-      <View style={{ flex: 1 }} />
+      <VideoScreen />
       <View style={{ flex: 2 }}>
         <FlatList
           keyExtractor={_keyExtractor}
@@ -46,7 +50,9 @@ const UserScreen: FunctionComponent<UserProps> = ({
           )}
         />
       </View>
-      <Button color="#4d505f" title={`${userName}`} onPress={() => signOut()} />
+      
+      <Toolbar height={height} width={width} />
+      <Button color="#4d505f" title={`${version}`} onPress={() => signOut()} />
     </View>
   );
 };

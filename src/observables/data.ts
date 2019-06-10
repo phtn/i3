@@ -7,7 +7,8 @@ provider.addScope("repo");
 class AppData {
   @observable user: any = "";
   @observable photoURL: any;
-
+  version: string = '0.0.1'
+  
   checkAuthState() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
