@@ -28,7 +28,7 @@ const StatusBar: FunctionComponent<StatusBarProps> = ({
       <View style={[styles.statusContainer, {height: height * 0.1, width: 100}]}>
         <Text style={[styles.username]}>{user}</Text>
         <View style={[styles.coinsRow]}>
-          <Image source={require('../assets/dollar.png')} style={[{height: 10, width: 10}]} />
+          <Image source={require('../assets/dollar.png')} style={[{height: 15, width: 15}]} />
           <Text style={[styles.coins]}>42</Text>
         </View>
         <Text style={[styles.level]}>Lv.  1</Text>
@@ -76,7 +76,8 @@ const styles = StyleSheet.create({
   },
   level: {
     fontSize: 8,
-    color: '#ff4b12'
+    // color: '#ff4b12'
+    color: '#546e7a'
   }
 });
 export default StatusBar;

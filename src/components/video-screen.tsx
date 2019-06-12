@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 
 type VideoScreenProps = {
   height?: number;
@@ -8,7 +8,7 @@ type VideoScreenProps = {
 const VideoScreen: FunctionComponent<VideoScreenProps> = ({height, width}) => {
   return (
     <View style={[styles.container]}>
-      <Text>Video</Text>
+      <Image source={require('../assets/light-bulb.png')} style={[{height: 100, width: 200}]} />
     </View>
   )
 }

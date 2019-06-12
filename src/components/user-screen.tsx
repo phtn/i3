@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#40424f" // 4d505f
   },
+  list: {
+    justifyContent: 'space-evenly'
+  }
 });
 
 export default UserScreen;

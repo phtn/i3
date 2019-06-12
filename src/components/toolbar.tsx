@@ -9,9 +9,9 @@ const Toolbar: FunctionComponent<ToolbarProps> = ({height, width}) => {
   return (
     <View style={[styles.container, {height: height * 0.1, width}]}>
       <Button title='Devs' color='#4d505f' onPress={() => window.console.log('Devs')} />
-      <Button title='Machine' color='#4d505f' onPress={() => window.console.log('Devs')} />
-      <Button title='Coins' color='#4d505f' onPress={() => window.console.log('Devs')} />
-      <Button title='Settings' color='#4d505f' onPress={() => window.console.log('Devs')} />
+      <Button title='Workstation' color='#4d505f' onPress={() => window.console.log('Devs')} />
+      <Button title='Shop' color='#4d505f' onPress={() => window.console.log('Devs')} />
+      
       
     </View>
   )
