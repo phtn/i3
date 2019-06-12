@@ -48,7 +48,7 @@ const HomeScreen: FunctionComponent = () => {
           height={height}
           photoURL={appCtx.photoURL}
           signOut={appCtx.signOut}
-          userName={appCtx.user}
+          username={appCtx.user}
           version={appCtx.version}
           width={width}
 

@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from "react";
-import { View, Button, Image, StyleSheet, FlatList } from "react-native";
+import { View, Button, StyleSheet, FlatList } from "react-native";
 import Toolbar from './toolbar'
 import VideoScreen from './video-screen'
+import StatusBar from './status-bar'
 
 type UserProps = {
-  userName?: string;
+  username?: string;
   signOut?: any;
   photoURL: string;
   width: number;
@@ -20,7 +21,7 @@ const data = [
 ];
 
 const UserScreen: FunctionComponent<UserProps> = ({
-  userName,
+  username,
   signOut,
   photoURL,
   width,
@@ -31,13 +32,12 @@ const UserScreen: FunctionComponent<UserProps> = ({
 
   return (
     <View style={[styles.container, { width, height }]}>
-      <View style={[styles.statusBar, { height: height * 0.1 }]}>
-        <Image
-          style={{ width: height * 0.1, height: height * 0.1 }}
-          source={{ uri: photoURL }}
-        />
-      </View>
+
+      {/* STATUS BAR */}
+      <StatusBar height={height} width={width} photoURL={photoURL} user={username}/>
+      
       <VideoScreen />
+
       <View style={{ flex: 2 }}>
         <FlatList
           keyExtractor={_keyExtractor}
@@ -61,10 +61,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#40424f" // 4d505f
   },
-  statusBar: {
-    backgroundColor: "#393945",
-    elevation: 3
-  }
 });
 
 export default UserScreen;
