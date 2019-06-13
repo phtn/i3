@@ -3,14 +3,15 @@ import { Button, StyleSheet, View  } from 'react-native'
 
 type ToolbarProps = {
   height: number;
-  width: number
+  width: number;
+  setWindow: any;
 }
-const Toolbar: FunctionComponent<ToolbarProps> = ({height, width}) => {
+const Toolbar: FunctionComponent<ToolbarProps> = ({height, width, setWindow}) => {
   return (
     <View style={[styles.container, {height: height * 0.1, width}]}>
-      <Button title='Devs' color='#4d505f' onPress={() => window.console.log('Devs')} />
-      <Button title='Workstation' color='#4d505f' onPress={() => window.console.log('Devs')} />
-      <Button title='Shop' color='#4d505f' onPress={() => window.console.log('Devs')} />
+      <Button title='Devs' color='#4d505f' onPress={() => setWindow('devs')} />
+      <Button title='Workstation' color='#4d505f' onPress={() => setWindow('work')} />
+      <Button title='Shop' color='#4d505f' onPress={() => setWindow('shop')} />
       
       
     </View>

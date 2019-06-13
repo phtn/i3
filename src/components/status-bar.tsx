@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
 
-
 type StatusBarProps = {
   height: number;
   photoURL: string;
   width: number;
   user: any
 };
+
 const StatusBar: FunctionComponent<StatusBarProps> = ({
   height,
   width,
@@ -25,18 +25,23 @@ const StatusBar: FunctionComponent<StatusBarProps> = ({
       </View>
 
 
-      <View style={[styles.statusContainer, {height: height * 0.1, width: 100}]}>
+      <View style={[styles.statusContainer, { height: height * 0.1, width: 100 }]}>
         <Text style={[styles.username]}>{user}</Text>
         <View style={[styles.coinsRow]}>
-          <Image source={require('../assets/dollar.png')} style={[{height: 15, width: 15}]} />
+          <Image source={require('../assets/dollar.png')} style={[{ height: 15, width: 15 }]} />
           <Text style={[styles.coins]}>42</Text>
         </View>
         <Text style={[styles.level]}>Lv.  1</Text>
+
+        {/* <Sound url={require('../assets/sounds/spark_ice.mp3')} loop={true} playStatus={status.playing} /> */}
+
+        <audio src={require('../assets/sounds/spark_ice.mp3')} autoPlay/>
+
       </View>
-      
-      
+
+
       <View style={[styles.rightSideStatus]}>
-      <Text style={{color: 'blue'}}></Text>
+        <Text style={{ color: 'blue' }}></Text>
       </View>
     </View>
   );

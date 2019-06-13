@@ -8,7 +8,7 @@ type VideoScreenProps = {
 const VideoScreen: FunctionComponent<VideoScreenProps> = ({height, width}) => {
   return (
     <View style={[styles.container]}>
-      <Image source={require('../assets/light-bulb.png')} style={[{height: 100, width: 200}]} />
+      <Image source={require('../assets/light-bulb.png')} style={[{height: 105, width: 200}]} />
     </View>
   )
 }

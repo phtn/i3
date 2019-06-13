@@ -67,8 +67,11 @@ const SignInScreen: FunctionComponent<SignInProps> = ({
   return (
     <View style={[styles.signInScreenStyle, { width, height }]}>
 
+      
+
       <View style={{height: 50, justifyContent: 'center'}}>
         <Text style={[styles.title]} >Idle Devs </Text>
+        <audio src={require('../assets/sounds/intro.mp3')} autoPlay />
       </View>
       
       <View style={{height: 50, justifyContent: 'center'}}>

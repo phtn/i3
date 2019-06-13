@@ -29,8 +29,6 @@ class AppData {
         return result;
       })
       .catch(error => window.console.log(error));
-
-    this.connectionStatus = 'Con'
   }
   signOut() {
     firebase

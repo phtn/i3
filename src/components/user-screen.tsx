@@ -1,8 +1,9 @@
-import React, { FunctionComponent } from "react";
-import { View, Button, StyleSheet, FlatList } from "react-native";
+import React, { FunctionComponent, useReducer } from "react";
+import { View, Button, StyleSheet, Text } from "react-native";
 import Toolbar from './toolbar'
 import VideoScreen from './video-screen'
 import StatusBar from './status-bar'
+import DevsComponent from './devs-comp'
 
 type UserProps = {
   username?: string;
@@ -13,13 +14,18 @@ type UserProps = {
   version?: string
 };
 
-const data = [
-  { name: "Dan" },
-  { name: "Seb" },
-  { name: "Andrew" },
-  { name: "Sophie" }
-];
 
+
+//  SHOP COMP
+const Shop = () => {
+  return (
+    <View style={[{justifyContent: 'center', flex: 2}]}>
+      <Text>Shop</Text>
+    </View>
+  )
+}
+
+// MAIN USER SCREEN
 const UserScreen: FunctionComponent<UserProps> = ({
   username,
   signOut,
@@ -28,7 +34,22 @@ const UserScreen: FunctionComponent<UserProps> = ({
   height,
   version
 }) => {
-  const _keyExtractor = (item?: any) => item.name;
+
+  const initialState = <DevsComponent />
+  const reducer = (state: any, action: string) => {
+    switch(action) {
+      case 'devs': return <DevsComponent />
+      case 'work': return <Shop />
+      case 'shop': return <Shop />
+      default: return state
+    }
+  }
+
+  const [windowComponent, setWindowComponent] = useReducer(reducer, initialState)
+
+  const setWindow = (comp: string) => {
+    setWindowComponent(comp)
+  }
 
   return (
     <View style={[styles.container, { width, height }]}>
@@ -36,22 +57,13 @@ const UserScreen: FunctionComponent<UserProps> = ({
       {/* STATUS BAR */}
       <StatusBar height={height} width={width} photoURL={photoURL} user={username}/>
       
+      {/*🤹🏽‍♂️ VIDEO SCREEN 🤹🏽‍♂️*/}
       <VideoScreen />
 
-      <View style={{ flex: 2 }}>
-        <FlatList
-          keyExtractor={_keyExtractor}
-          data={data}
-          renderItem={({ item }) => (
-            <Button
-              title={`${item.name}`}
-              onPress={() => window.console.log(item.name)}
-            />
-          )}
-        />
-      </View>
+      {/*⚡️ WINDOW COMPONENTS  ⚡️*/}
+      {windowComponent}
       
-      <Toolbar height={height} width={width} />
+      <Toolbar height={height} width={width} setWindow={setWindow}/>
       <Button color="#4d505f" title={`${version}`} onPress={() => signOut()} />
     </View>
   );
