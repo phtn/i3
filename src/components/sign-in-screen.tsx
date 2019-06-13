@@ -1,33 +1,42 @@
 import React, { FunctionComponent, useEffect, useReducer } from "react";
-import { View, Button, StyleSheet, ActivityIndicator } from "react-native";
+import { View, Button, StyleSheet, ActivityIndicator, Text } from "react-native";
 
 type SignInProps = {
   signIn: any;
   width: number;
   height: number;
+  connectionStatus: string
 };
 
 type SignInButtonProps = {
   signIn: any;
+  connectionStatus: string
 };
+
+
 
 const Loading = () => {
   return <ActivityIndicator size="small" color="#52e3c2" />;
 };
 
-const SignInButton: FunctionComponent<SignInButtonProps> = ({ signIn }) => {
+const SignInButton: FunctionComponent<SignInButtonProps> = ({ signIn, connectionStatus }) => {
   return (
     <Button
-      color="#52e3c2"
-      title="Continue with Github"
-      onPress={() => signIn()}
+      color="#4d505f"
+      title={`${connectionStatus}`}
+      onPress={() => {
+        signIn()
+      }}
       accessibilityLabel="Sign in to your Github account to continue."
     />
   );
 };
 
+
+
 const SignInScreen: FunctionComponent<SignInProps> = ({
   signIn,
+  connectionStatus,
   width,
   height
 }) => {
@@ -36,7 +45,9 @@ const SignInScreen: FunctionComponent<SignInProps> = ({
   const reducer = (state: any, action: string) => {
     switch (action) {
       case "signIn":
-        return <SignInButton signIn={signIn} />;
+        return <SignInButton signIn={signIn} connectionStatus={connectionStatus}/>;
+      case "loading": 
+        return <Loading />
       default:
         return state;
     }
@@ -50,8 +61,21 @@ const SignInScreen: FunctionComponent<SignInProps> = ({
     return () => clearTimeout(timer);
   }, []);
 
+
+  
+ 
   return (
-    <View style={[styles.signInScreenStyle, { width, height }]}>{comp}</View>
+    <View style={[styles.signInScreenStyle, { width, height }]}>
+
+      <View style={{height: 50, justifyContent: 'center'}}>
+        <Text style={[styles.title]} >Idle Devs </Text>
+      </View>
+      
+      <View style={{height: 50, justifyContent: 'center'}}>
+        {comp}
+      </View>
+      
+    </View>
   );
 };
 
@@ -60,7 +84,12 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#4d505f",
+    backgroundColor: "#40424f",
+  },
+  title: {
+    fontSize: 20,
+    fontFamily: 'Quicksand, sans-serif',
+    color: '#ed8a19',
   }
 });
 

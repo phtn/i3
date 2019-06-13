@@ -7,6 +7,8 @@ provider.addScope("repo");
 class AppData {
   @observable user: any = "";
   @observable photoURL: any;
+  @observable connectionStatus: string = 'Continue with Github'
+
   version: string = '0.0.1'
   
   checkAuthState() {
@@ -14,6 +16,7 @@ class AppData {
       if (user) {
         this.user = user.displayName;
         this.photoURL = user.photoURL;
+        this.connectionStatus = 'Connecting...'
         // window.console.log(user.photoURL)
       }
     });
@@ -26,6 +29,8 @@ class AppData {
         return result;
       })
       .catch(error => window.console.log(error));
+
+    this.connectionStatus = 'Con'
   }
   signOut() {
     firebase
@@ -36,6 +41,7 @@ class AppData {
       })
       .catch(error => window.console.log(error));
   }
+  
 }
 
 export const AppStore = createContext(new AppData());

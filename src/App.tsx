@@ -51,12 +51,12 @@ const HomeScreen: FunctionComponent = () => {
           username={appCtx.user}
           version={appCtx.version}
           width={width}
-
         />
       ) : (
         <View style={{ flex: 3 }}>
           <SignInScreen
             signIn={appCtx.signInWithGithub}
+            connectionStatus={appCtx.connectionStatus}
             width={width}
             height={height}
           />
