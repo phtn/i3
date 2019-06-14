@@ -10,10 +10,6 @@ import UserScreen from "./components/user-screen";
 import SignInScreen from "./components/sign-in-screen";
 import { AppStore } from "./observables/data";
 
-// eslint-disable-next-line
-function log(arg: any) {
-  window.console.log(arg);
-}
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -40,6 +36,7 @@ const HomeScreen: FunctionComponent = () => {
 
   // CHECK IF LOGGED IN
   appCtx.checkAuthState();
+  appCtx.loadDevs()
 
   return useObserver(() => (
     <View style={[{ flex: 1 }]}>
@@ -51,6 +48,7 @@ const HomeScreen: FunctionComponent = () => {
           username={appCtx.user}
           version={appCtx.version}
           width={width}
+          devs={appCtx.devs}
         />
       ) : (
         <View style={{ flex: 3 }}>

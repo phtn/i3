@@ -12,6 +12,7 @@ type UserProps = {
   width: number;
   height: number;
   version?: string
+  devs: any
 };
 
 
@@ -32,13 +33,14 @@ const UserScreen: FunctionComponent<UserProps> = ({
   photoURL,
   width,
   height,
-  version
+  version,
+  devs
 }) => {
 
-  const initialState = <DevsComponent />
+  const initialState = <DevsComponent devs={devs} />
   const reducer = (state: any, action: string) => {
     switch(action) {
-      case 'devs': return <DevsComponent />
+      case 'devs': return <DevsComponent devs={devs}/>
       case 'work': return <Shop />
       case 'shop': return <Shop />
       default: return state

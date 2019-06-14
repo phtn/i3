@@ -1,6 +1,6 @@
 import { observable } from "mobx";
 import { createContext } from "react";
-import firebase, { provider } from "../firebase";
+import firebase, { provider, db } from "../firebase";
 
 provider.addScope("repo");
 
@@ -8,8 +8,8 @@ class AppData {
   @observable user: any = "";
   @observable photoURL: any;
   @observable connectionStatus: string = 'Continue with Github'
-
-  version: string = '0.0.1'
+  @observable devs: any
+  version: string = '1.0.1'
   
   checkAuthState() {
     firebase.auth().onAuthStateChanged(user => {
@@ -20,6 +20,11 @@ class AppData {
         // window.console.log(user.photoURL)
       }
     });
+  }
+  loadDevs(){
+    db.collection('devs').get().then( snapshot => {
+      snapshot.forEach( doc => window.console.log(doc.data()))
+    })
   }
   signInWithGithub() {
     firebase

@@ -16,4 +16,6 @@ const firebase = app.initializeApp(config);
 
 export const provider = new app.auth.GithubAuthProvider();
 
+export const db = app.firestore()
+
 export default firebase;

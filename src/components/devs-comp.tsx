@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, FunctionComponent } from 'react'
+import { useObserver } from 'mobx-react-lite'
 import { View, FlatList, Button, StyleSheet, Text, Image } from 'react-native'
 
+type DevsComponentProps = {
+  devs: any
+}
 const data = [
     { name: "Emma", id: '@EmmaWedekind', img: 'https://pbs.twimg.com/profile_images/1135263839543537664/91rCpayn_400x400.jpg' },
     { name: "Ali", id: '@ASpittel', img: 'https://pbs.twimg.com/profile_images/1112797913372155904/Yg94Zz8-_400x400.png' },
@@ -8,7 +12,7 @@ const data = [
   ];
   
   // DEVS COMP
-  const DevsComponent = () => {
+  const DevsComponent: FunctionComponent<DevsComponentProps> = ({devs}) => {
     const _keyExtractor = (item?: any) => item.name;
 
     const [ collect, setCollect ] = useState(false)
@@ -18,7 +22,9 @@ const data = [
       window.console.log(collect)
     }
 
-    return (
+    window.console.log(devs)
+
+    return useObserver( () =>  (
       <View style={{ flex: 2, backgroundColor: '#222'  }}>
         <FlatList
           keyExtractor={_keyExtractor}
@@ -50,7 +56,7 @@ const data = [
           )}
         />
       </View>
-    )
+    ))
   }
 
   const styles = StyleSheet.create({
