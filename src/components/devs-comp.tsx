@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, FlatList, Button, StyleSheet, Text, Image } from 'react-native'
 
 const data = [
@@ -10,6 +10,14 @@ const data = [
   // DEVS COMP
   const DevsComponent = () => {
     const _keyExtractor = (item?: any) => item.name;
+
+    const [ collect, setCollect ] = useState(false)
+
+    const toggleCollect = () => {
+      setCollect(c => !c)
+      window.console.log(collect)
+    }
+
     return (
       <View style={{ flex: 2, backgroundColor: '#222'  }}>
         <FlatList
@@ -27,15 +35,15 @@ const data = [
             
 
             <View style={[styles.panelStatus]}>
-              <Text style={[{fontSize: 11,color: '#52e3c2'}]} >{`${item.id}`}</Text>
-              <Text style={[{fontSize: 11,color: '#ed8a19'}]} >Income</Text>
-              <Text style={[{fontSize: 11,color: '#546e7a'}]} >5s</Text>
+              <Text style={[{fontFamily: 'Quicksand, sans-serif', fontSize: 11,color: '#52e3c2'}]} >{`${item.id}`}</Text>
+              <Text style={[{fontFamily: 'Quicksand, sans-serif', fontSize: 11,color: '#ed8a19'}]} >4000</Text>
+              <Text style={[{fontSize: 10 ,color: '#546e7a'}]} >5s</Text>
             </View>
             <View style={[{margin: 5, alignItems: 'center', justifyContent: 'center'}]}>
               <Button
-                title={`collect`}
+                title={collect ? '✔️' : '</>'}
                 color='gray'
-                onPress={() => window.console.log(item.name)}
+                onPress={() => toggleCollect()}
               />
             </View>
             </View>
@@ -51,7 +59,9 @@ const data = [
       backgroundColor: '#393945',
       flexDirection: 'row',
       padding: 2,
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      borderBottomWidth: 0.1,
+      borderColor: '#546e7a'
     },
     devImage: {
       height: 51,
