@@ -33,8 +33,7 @@ const StatusBar: FunctionComponent<StatusBarProps> = ({
         </View>
         <Text style={[styles.level]}>Lv.  1</Text>
 
-        {/* <Sound url={require('../assets/sounds/spark_ice.mp3')} loop={true} playStatus={status.playing} /> */}
-
+        {/* 🎹 AUDIO  🎹 */}
         <audio src={require('../assets/sounds/spark_ice.mp3')} autoPlay/>
 
       </View>
