@@ -1,4 +1,6 @@
 import { useObserver } from "mobx-react-lite";
+import { autorun } from 'mobx'
+
 import React, {
   FunctionComponent,
   useContext,
@@ -10,33 +12,39 @@ import UserScreen from "./components/user-screen";
 import SignInScreen from "./components/sign-in-screen";
 import { AppStore } from "./observables/data";
 
-
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
+
 
 const HomeScreen: FunctionComponent = () => {
   const [width, setWidth] = useState(WIDTH);
   const [height, setHeight] = useState(HEIGHT);
-
+  
   useEffect(() => {
     const handleWidthResize = () => setWidth(window.innerWidth);
     const handleHeightResize = () => setHeight(window.innerHeight);
-
+    
     window.addEventListener("resize", handleWidthResize);
     window.addEventListener("resize", handleHeightResize);
-
+    
     return () => {
       window.removeEventListener("resize", handleWidthResize);
       window.removeEventListener("resize", handleHeightResize);
     };
   }, []);
-
+  
   // LOAD DATA
   const appCtx = useContext(AppStore);
+  autorun(() => {
+    appCtx.checkAuthState()
+    appCtx.fetchDevs()
+  })
+  // autorun(() => )
+  
+  // window.console.log(appCtx.devs)
 
-  // CHECK IF LOGGED IN
-  appCtx.checkAuthState();
-  appCtx.loadDevs()
+  
+
 
   return useObserver(() => (
     <View style={[{ flex: 1 }]}>

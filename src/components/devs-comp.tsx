@@ -5,10 +5,11 @@ import { View, FlatList, Button, StyleSheet, Text, Image } from 'react-native'
 type DevsComponentProps = {
   devs: any
 }
+
 const data = [
-    { name: "Emma", id: '@EmmaWedekind', img: 'https://pbs.twimg.com/profile_images/1135263839543537664/91rCpayn_400x400.jpg' },
-    { name: "Ali", id: '@ASpittel', img: 'https://pbs.twimg.com/profile_images/1112797913372155904/Yg94Zz8-_400x400.png' },
-    { name: "Kelly", id: '@kvlly', img: 'https://pbs.twimg.com/profile_images/1134881029100101635/NVj8aj1k_400x400.jpg' },
+    { name: "Emma", income: 100, id: '@EmmaWedekind', img: 'https://pbs.twimg.com/profile_images/1135263839543537664/91rCpayn_400x400.jpg' },
+    { name: "Ali", income: 200, id: '@ASpittel', img: 'https://pbs.twimg.com/profile_images/1112797913372155904/Yg94Zz8-_400x400.png' },
+    // { name: "Kelly", id: '@kvlly', img: 'https://pbs.twimg.com/profile_images/1134881029100101635/NVj8aj1k_400x400.jpg' },
   ];
   
   // DEVS COMP
@@ -22,13 +23,13 @@ const data = [
       window.console.log(collect)
     }
 
-    window.console.log(devs)
+    // window.console.log(devs)
 
     return useObserver( () =>  (
       <View style={{ flex: 2, backgroundColor: '#222'  }}>
         <FlatList
           keyExtractor={_keyExtractor}
-          data={data}
+          data={devs.length !== 0 ? devs : data}
           renderItem={({ item }) => (
             
             // PANEL
@@ -41,8 +42,8 @@ const data = [
             
 
             <View style={[styles.panelStatus]}>
-              <Text style={[{fontFamily: 'Quicksand, sans-serif', fontSize: 11,color: '#52e3c2'}]} >{`${item.id}`}</Text>
-              <Text style={[{fontFamily: 'Quicksand, sans-serif', fontSize: 11,color: '#ed8a19'}]} >4000</Text>
+              <Text style={[{fontFamily: 'Quicksand, sans-serif', fontSize: 11,color: '#52e3c2'}]} >{`${item.name}`}</Text>
+              <Text style={[{fontFamily: 'Quicksand, sans-serif', fontSize: 11,color: '#ed8a19'}]} >{`${item.income}`}</Text>
               <Text style={[{fontSize: 10 ,color: '#546e7a'}]} >5s</Text>
             </View>
             <View style={[{margin: 5, alignItems: 'center', justifyContent: 'center'}]}>

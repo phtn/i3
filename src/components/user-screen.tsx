@@ -4,6 +4,7 @@ import Toolbar from './toolbar'
 import VideoScreen from './video-screen'
 import StatusBar from './status-bar'
 import DevsComponent from './devs-comp'
+import { useObserver } from "mobx-react-lite";
 
 type UserProps = {
   username?: string;
@@ -53,7 +54,7 @@ const UserScreen: FunctionComponent<UserProps> = ({
     setWindowComponent(comp)
   }
 
-  return (
+  return useObserver( () => (
     <View style={[styles.container, { width, height }]}>
 
       {/* STATUS BAR */}
@@ -68,7 +69,7 @@ const UserScreen: FunctionComponent<UserProps> = ({
       <Toolbar height={height} width={width} setWindow={setWindow}/>
       <Button color="#4d505f" title={`${version}`} onPress={() => signOut()} />
     </View>
-  );
+  ))
 };
 
 const styles = StyleSheet.create({
