@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useReducer } from "react";
-import { View, Button, StyleSheet, Text } from "react-native";
+import React, { FunctionComponent, useReducer, useEffect } from "react";
+import { View, Button, StyleSheet, Text, ActivityIndicator } from "react-native";
 import Toolbar from './toolbar'
 import VideoScreen from './video-screen'
 import StatusBar from './status-bar'
@@ -27,6 +27,14 @@ const Shop = () => {
   )
 }
 
+const Loader = () => {
+  return (
+    <View style={[styles.loader]}>
+      <ActivityIndicator size={'large'} color={'#52e3c2'} />
+    </View>
+  )
+}
+
 // MAIN USER SCREEN
 const UserScreen: FunctionComponent<UserProps> = ({
   username,
@@ -38,7 +46,8 @@ const UserScreen: FunctionComponent<UserProps> = ({
   devs
 }) => {
 
-  const initialState = <DevsComponent devs={devs} />
+  
+  const initialState = <Loader />
   const reducer = (state: any, action: string) => {
     switch(action) {
       case 'devs': return <DevsComponent devs={devs}/>
@@ -53,6 +62,13 @@ const UserScreen: FunctionComponent<UserProps> = ({
   const setWindow = (comp: string) => {
     setWindowComponent(comp)
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setWindow('devs')
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [])
 
   return useObserver( () => (
     <View style={[styles.container, { width, height }]}>
@@ -78,6 +94,13 @@ const styles = StyleSheet.create({
   },
   list: {
     justifyContent: 'space-evenly'
+  },
+  loader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 2
+
   }
 });
 
