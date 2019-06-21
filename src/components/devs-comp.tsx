@@ -23,13 +23,15 @@ const data = [
       window.console.log(collect)
     }
 
-    // window.console.log(devs)
+    if (devs !== undefined){
+      window.console.log(devs)
+    }
 
     return useObserver( () =>  (
       <View style={{ flex: 2, backgroundColor: '#222'  }}>
         <FlatList
           keyExtractor={_keyExtractor}
-          data={devs.length !== 0 ? devs : data}
+          data={devs !== undefined? devs.devs : data}
           renderItem={({ item }) => (
             
             // PANEL

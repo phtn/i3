@@ -38,10 +38,11 @@ const HomeScreen: FunctionComponent = () => {
   autorun(() => {
     appCtx.checkAuthState()
     appCtx.fetchDevs()
+    appCtx.fetchUserData()
   })
   // autorun(() => )
   
-  // window.console.log(appCtx.devs)
+  // window.console.log(appCtx.userData)
 
   
 
@@ -56,7 +57,8 @@ const HomeScreen: FunctionComponent = () => {
           username={appCtx.user}
           version={appCtx.version}
           width={width}
-          devs={appCtx.devs}
+          devs={appCtx.userData}
+          userData={appCtx.userData}
         />
       ) : (
         <View style={{ flex: 3 }}>

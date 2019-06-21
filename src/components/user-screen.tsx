@@ -14,6 +14,7 @@ type UserProps = {
   height: number;
   version?: string
   devs: any
+  userData?: any
 };
 
 
@@ -21,7 +22,7 @@ type UserProps = {
 //  SHOP COMP
 const Shop = () => {
   return (
-    <View style={[{justifyContent: 'center', flex: 2}]}>
+    <View style={[{ justifyContent: 'center', flex: 2 }]}>
       <Text>Shop</Text>
     </View>
   )
@@ -43,14 +44,15 @@ const UserScreen: FunctionComponent<UserProps> = ({
   width,
   height,
   version,
-  devs
+  devs,
+  userData
 }) => {
 
-  
+
   const initialState = <Loader />
   const reducer = (state: any, action: string) => {
-    switch(action) {
-      case 'devs': return <DevsComponent devs={devs}/>
+    switch (action) {
+      case 'devs': return <DevsComponent devs={userData} />
       case 'work': return <Shop />
       case 'shop': return <Shop />
       default: return state
@@ -66,23 +68,23 @@ const UserScreen: FunctionComponent<UserProps> = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setWindow('devs')
-    }, 500);
+    }, 1500);
     return () => clearTimeout(timer);
   }, [])
 
-  return useObserver( () => (
+  return useObserver(() => (
     <View style={[styles.container, { width, height }]}>
 
       {/* STATUS BAR */}
-      <StatusBar height={height} width={width} photoURL={photoURL} user={username}/>
-      
+      <StatusBar height={height} width={width} photoURL={photoURL} user={username} userData={userData} />
+
       {/*🤹🏽‍♂️ VIDEO SCREEN 🤹🏽‍♂️*/}
       <VideoScreen />
 
       {/*⚡️ WINDOW COMPONENTS  ⚡️*/}
       {windowComponent}
-      
-      <Toolbar height={height} width={width} setWindow={setWindow}/>
+
+      <Toolbar height={height} width={width} setWindow={setWindow} />
       <Button color="#4d505f" title={`${version}`} onPress={() => signOut()} />
     </View>
   ))

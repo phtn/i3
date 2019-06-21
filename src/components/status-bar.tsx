@@ -6,14 +6,18 @@ type StatusBarProps = {
   photoURL: string;
   width: number;
   user: any
+  userData: any
 };
 
 const StatusBar: FunctionComponent<StatusBarProps> = ({
   height,
   width,
   photoURL,
-  user
+  user,
+  userData
 }) => {
+
+  // window.console.log(userData)
   return (
     <View style={[styles.container, { height: height * 0.1 }]}>
 
@@ -29,7 +33,7 @@ const StatusBar: FunctionComponent<StatusBarProps> = ({
         <Text style={[styles.username]}>{user}</Text>
         <View style={[styles.coinsRow]}>
           <Image source={require('../assets/dollar.png')} style={[{ height: 15, width: 15 }]} />
-          <Text style={[styles.coins]}>42</Text>
+          <Text style={[styles.coins]}>{userData.coins}</Text>
         </View>
         <Text style={[styles.level]}>Lv.  1</Text>
 
@@ -40,7 +44,7 @@ const StatusBar: FunctionComponent<StatusBarProps> = ({
 
 
       <View style={[styles.rightSideStatus]}>
-        <Text style={{ color: 'blue' }}></Text>
+        <Text style={{ color: 'white' }}></Text>
       </View>
     </View>
   );
